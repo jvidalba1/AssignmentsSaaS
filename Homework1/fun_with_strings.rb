@@ -1,28 +1,18 @@
-class Homework1
+#class Homework1
 
+  def palindrome?(str)
 
-
-  def palindromo(str=0)
-
-
-    str.gsub!("/\W/")
-
-    #puts"ingrese una palabra"
-    #str = gets.chomp
-    #
-    #if str == str.reverse
-    #  puts"palindromo"
-    #else
-    #  puts"no "
-    #end
-
-
-
+    #Quitar caracteres raros, guión bajo y digitos
+    str.downcase.gsub!(/\W|\_|\d/,"")
+    #Validación del palíndromo - true si es palidromo, false si no
+    str == str.reverse
 
   end
 
+  palindrome? "A man, a plan, a canal -- Panama"
 
-end
+  #pal = Homework1.new
+  #pal.palindrome?("A man, a plan, a canal -- Panama")
 
-oelo = Homework1.new
-oelo.palindromo
+#end
+
