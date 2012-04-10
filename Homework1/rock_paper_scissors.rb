@@ -4,10 +4,7 @@ class Rock_paper_scissors
   class NoSuchStrategyError < StandardError ; end
 
   def rps_game_winner(game)
-=begin
-    Rules
-    Rock beats Scissors - Scissors beats Paper - Paper beats Rock
-=end
+
     raise WrongNumberOfPlayersError unless game.length == 2
     strategy = /[PSR]/
 
@@ -15,6 +12,10 @@ class Rock_paper_scissors
     jugador2 = game.last.last
 
     raise NoSuchStrategyError unless jugador1 =~ strategy or two =~ strategy
+=begin
+    Rules
+    Rock beats Scissors - Scissors beats Paper - Paper beats Rock
+=end
 
     if ((jugador1 == two)                or
       (jugador1.eql? "R" and jugador2.eql? "S") or
