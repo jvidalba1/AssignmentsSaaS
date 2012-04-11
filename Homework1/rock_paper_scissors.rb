@@ -14,39 +14,47 @@ class Rock_paper_scissors
     jugador1 = game.first.last
     jugador2 = game.last.last
 
-    raise NoSuchStrategyError unless jugador1 =~ strategy or two =~ strategy
+    raise NoSuchStrategyError unless jugador1 =~ strategy or jugador2 =~ strategy
 
-    if ((jugador1 == two)                or
-      (jugador1.eql? "R" and jugador2.eql? "S") or
-      (jugador1.eql? "S" and jugador2.eql? "P") or
-      (jugador1.eql? "P" and jugador2.eql? "R"))
+    if ((jugador1 == jugador2)                      ||
+      ((jugador1.eql? "R") && (jugador2.eql? "S"))  ||
+      ((jugador1.eql? "S") && (jugador2.eql? "P"))  ||
+      ((jugador1.eql? "P") && (jugador2.eql? "R")))
 
-      return game.first.first
-    elsif
-      return game.last.first
+      return game.first
+    else
+
+      return game.last
     end
-
-
-=begin
-    #testing
-    if (strategy =~ game)
-      puts "yeah"
-    elsif
-      puts "no sorry"
-    end
-=end
-
 
   end
 
   def rps_tournament_winner(tournament)
-    cuartos1 = tournament.first.first
-    cuartos2 = tournament.first.last
-    cuartos3 = tournament.last.first
-    cuartos4 = tournament.last.last
+    cuartos1        = tournament.first.first
+    cuartos2        = tournament.first.last
+    cuartos3        = tournament.last.first
+    cuartos4        = tournament.last.last
 
+    #Game in quarter finals
     winner_cuartos1 = rps_game_winner(cuartos1)
+    winner_cuartos2 = rps_game_winner(cuartos2)
+    winner_cuartos3 = rps_game_winner(cuartos3)
+    winner_cuartos4 = rps_game_winner(cuartos4)
 
+    semi1           = [winner_cuartos1]+[winner_cuartos2]
+    semi2           = [winner_cuartos3]+[winner_cuartos4]
+
+    #Game in semi-finals
+    winner_semi1    = rps_game_winner(semi1)
+    winner_semi2    = rps_game_winner(semi2)
+
+    final           = [winner_semi1]+[winner_semi2]
+
+    #The last game
+    winner_final    = rps_game_winner(final)
+
+    #Champion
+    return winner_final
   end
 
 
